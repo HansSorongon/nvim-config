@@ -1,17 +1,23 @@
 
-let mapleader = "`"
+let mapleader = " "
 
 " Set to use system clipboard.
 set clipboard+=unnamedplus
 
+syntax on
+set cursorline
+
 " Requirement for polyglot plugin.
-let g:polyglot_disabled = ['markdown']
+" let g:polyglot_disabled = ['markdown']
 
 " Mapleader binds.
-noremap <leader>` :exit<cr>
+noremap <leader><leader> :exit<cr>
 noremap <leader>v :vsplit
 noremap <leader>t :split<cr>:term<cr>
-noremap <leader>s :w<cr>
+noremap <leader>w :w<cr>
+noremap <leader>W :w<cr>
+noremap <leader>q <CR>w
+noremap <leader>a ggVG
 
 " Random binds.
 noremap <F11> :edit $MYVIMRC<cr>
@@ -20,6 +26,18 @@ noremap <F12> :so $MYVIMRC<cr>
 " Remap escape to kj
 inoremap kj <esc>
 vnoremap kj <esc>
+
+" Disable arrow keys lol
+map <up> <nop>
+imap <up> <nop>
+map <down> <nop>
+imap <down> <nop>
+map <left> <nop>
+imap <left> <nop>
+map <right> <nop>
+imap <right> <nop>
+map <F2> i<CR><ESC>
+nnoremap <space> <nop>
 
 " Fix tex file type
 autocmd BufRead, BufNewFile *.tex set filetype=tex
@@ -34,17 +52,10 @@ set encoding=utf-8
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set autoindent
+set textwidth=79
+set showmatch
 
-" Disable arrow keys lol
-map <up> <nop>
-imap <up> <nop>
-map <down> <nop>
-imap <down> <nop>
-map <left> <nop>
-imap <left> <nop>
-map <right> <nop>
-imap <right> <nop>
-map <F2> i<CR><ESC>
 
 " Plugins
 call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
@@ -54,7 +65,6 @@ call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
     Plug 'tpope/vim-surround'
     Plug 'sheerun/vim-polyglot'
     Plug 'ghifarit53/tokyonight-vim'
-    " Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
