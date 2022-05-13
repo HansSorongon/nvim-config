@@ -1,4 +1,6 @@
 
+" =================== Essential =================== "
+
 let mapleader = " "
 
 " Set to use system clipboard.
@@ -8,20 +10,29 @@ syntax on
 set cursorline
 
 " Requirement for polyglot plugin.
-" let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['markdown']
+
+" =================== Keybinds =================== "
 
 " Mapleader binds.
-noremap <leader><leader> :exit<cr>
+noremap <leader><leader><leader> :exit<cr>
 noremap <leader>v :vsplit
 noremap <leader>t :split<cr>:term<cr>
 noremap <leader>w :w<cr>
 noremap <leader>W :w<cr>
-noremap <leader>q <CR>w
+noremap <leader>q <cr>w
 noremap <leader>a ggVG
+noremap <leader>z :noh<cr>
+noremap <leader>f /
+noremap <leader><tab> <C-w>w
+noremap <leader>j 10j
+noremap <leader>k 10k
+noremap <leader>h 10h
+noremap <leader>l 10l
 
 " Random binds.
-noremap <F11> :edit $MYVIMRC<cr>
-noremap <F12> :so $MYVIMRC<cr>
+noremap <F1> :edit $MYVIMRC<cr>
+noremap <F2> :so $MYVIMRC<cr>
 
 " Remap escape to kj
 inoremap kj <esc>
@@ -36,8 +47,9 @@ map <left> <nop>
 imap <left> <nop>
 map <right> <nop>
 imap <right> <nop>
-map <F2> i<CR><ESC>
 nnoremap <space> <nop>
+
+" =================== Formatting =================== "
 
 " Fix tex file type
 autocmd BufRead, BufNewFile *.tex set filetype=tex
@@ -56,8 +68,8 @@ set autoindent
 set textwidth=79
 set showmatch
 
+" =================== Plugins and Themes =================== "
 
-" Plugins
 call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
 
     Plug 'jiangmiao/auto-pairs'
