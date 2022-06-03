@@ -32,6 +32,7 @@ noremap <leader>h 20h
 noremap <leader>l 20l
 noremap <leader>, 10<C-w><
 noremap <leader>. 10<C-w>>
+noremap <leader>d :r!cd<cr>ddk
 
 " Random binds.
 noremap <F1> :edit $MYVIMRC<cr>
@@ -84,6 +85,8 @@ call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
     " Plug 'ghifarit53/tokyonight-vim'
 
 call plug#end()
+
+let g:python_highlight_space_errors = 0
 
 " set termguicolors
 
