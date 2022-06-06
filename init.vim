@@ -93,7 +93,6 @@ call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
     Plug 'preservim/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'morhetz/gruvbox'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
