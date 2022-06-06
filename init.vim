@@ -34,11 +34,11 @@ noremap <leader>l 20l
 noremap <leader>, 10<C-w><
 noremap <leader>. 10<C-w>>
 noremap <leader>d :r!cd<cr>ddk
-noremap <leader>e :NERDTreeToggle<cr>
 
 " Random binds.
 noremap <F1> :edit $MYVIMRC<cr>
 noremap <F2> :so $MYVIMRC<cr>
+map ` :NERDTreeToggle<cr>
 
 " Remap escape to kj
 inoremap kj <esc>
@@ -103,9 +103,6 @@ let g:tokyonight_enable_italic = 1
 
 colorscheme tokyonight
 
-" syntax on
-" colorscheme onedark
-"
 " Vim airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='violet'
