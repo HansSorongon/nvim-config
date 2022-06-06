@@ -88,11 +88,12 @@ call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'morhetz/gruvbox'
-    Plug 'ghifarit53/tokyonight-vim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'tiagovla/tokyodark.nvim'
+    Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -100,12 +101,14 @@ let g:python_highlight_space_errors = 0
 
 set termguicolors
 
-" Tokyonight Theme
+" Tokyodark configs
 
-let g:tokyonight_style = 'night'
-let g:tokyonight_enable_italic = 1
+let g:tokyodark_transparent_background = 1
+let g:tokyodark_enable_italic_comment = 1
+let g:tokyodark_enable_italic = 1
+colorscheme tokyodark
 
-colorscheme tokyonight
+
 
 " Vim airline config
 let g:airline#extensions#tabline#enabled = 1
@@ -143,4 +146,5 @@ require 'nvim-treesitter.configs'.setup {
         disable = {},
         }
     }
+
 EOF
