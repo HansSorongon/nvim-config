@@ -26,7 +26,6 @@ noremap <leader>W :w<cr>
 noremap <leader>a ggVG
 noremap <leader>z :noh<cr>
 noremap <leader>f /
-noremap <leader><tab> <C-w>w
 noremap <leader>j 10j
 noremap <leader>k 10k
 noremap <leader>h 20h
@@ -39,6 +38,8 @@ noremap <leader>d :r!cd<cr>ddk
 noremap <F1> :edit $MYVIMRC<cr>
 noremap <F2> :so $MYVIMRC<cr>
 map ` :NERDTreeToggle<cr>
+map <tab>  <C-w>w
+map \ <cmd>Telescope find_files<CR>
 
 " Remap escape to kj
 inoremap kj <esc>
@@ -83,12 +84,15 @@ call plug#begin('C:\Users\Admin\AppData\Local\nvim-data\site\autoload\plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-surround'
-    Plug 'sheerun/vim-polyglot'
     Plug 'preservim/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'morhetz/gruvbox'
     Plug 'ghifarit53/tokyonight-vim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -127,3 +131,16 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+lua <<EOF
+require 'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,
+        disable = {},
+        additional_vim_regex_highlighting = true,
+        },
+    indent = {
+        enable = false,
+        disable = {},
+        }
+    }
+EOF
