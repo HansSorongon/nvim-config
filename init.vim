@@ -108,8 +108,6 @@ let g:tokyodark_enable_italic_comment = 1
 let g:tokyodark_enable_italic = 1
 colorscheme tokyodark
 
-
-
 " Vim airline config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='violet'
