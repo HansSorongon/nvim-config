@@ -77,7 +77,7 @@ autocmd BufWritePre * %s/\s\+$//e
 set number
 set encoding=utf-8
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set softtabstop=4
 " set autoindent
 set textwidth=79
@@ -108,9 +108,7 @@ set termguicolors
 
 " Tokyodark configs
 
-let g:tokyodark_transparent_background = 1
-let g:tokyodark_enable_italic_comment = 1
-let g:tokyodark_enable_italic = 1
+" let g:tokyodark_transparent_background = 1
 colorscheme tokyodark
 
 " Vim airline config
