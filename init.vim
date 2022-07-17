@@ -77,7 +77,7 @@ autocmd BufWritePre * %s/\s\+$//e
 set number
 set encoding=utf-8
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set softtabstop=4
 " set autoindent
 set textwidth=79
