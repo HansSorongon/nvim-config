@@ -1,8 +1,11 @@
 set encoding=utf-8
 set relativenumber
-set colorcolumn=80
+" set colorcolumn=120
 set modifiable
 set shiftwidth=2
+
+let g:io_flag = 0
+
 " =================== Essential =================== "
 set formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -12,46 +15,68 @@ let mapleader = " "
 set clipboard+=unnamedplus
 set mouse=a
 
-syntax on
+syntax enable
+filetype plugin indent on
 
 set formatoptions-=cro
 set splitright
 
+
+function! ToggleIO()
+    if g:io_flag == 0
+        let g:io_flag = 1
+        :vsplit ./output.txt
+        :split ./input.txt
+        :vertical resize -24
+    else
+        let g:io_flag = 0
+        :exit
+        :exit
+    endif
+endfunction
+
 " =================== Keybinds =================== "
 
 " Mapleader binds.
-nnoremap <C-f> :FloatermToggle<CR>
-tnoremap <C-f> <C-\><C-n>:FloatermToggle<CR>
+nnoremap T :FloatermToggle<CR>
+nnoremap <leader>c :call ToggleIO()<cr>
+
+tnoremap T <C-\><C-n>:FloatermToggle<CR>
 noremap <leader><leader><leader> :exit<cr>
+noremap <F2> :so $MYVIMRC<cr>
 noremap <leader>v :vsplit
 noremap <leader>w :w<cr>
 noremap <leader>W :w<cr>
 noremap <leader>a ggVG
 noremap <leader>z :noh<cr>
+noremap <leader>t :execute "read template.cpp"<cr>
 noremap <leader>j 10j
 noremap <leader>k 10k
 noremap <leader>h 20h
 noremap <leader>l 20l
-noremap <leader>, 10<C-w><
-noremap <leader>. 10<C-w>>
+noremap <leader>. 10<C-w><
+noremap <leader>, 10<C-w>>
 noremap <leader>d :r!cd<cr>ddk
 noremap <leader>s mqA;<esc>`q
-" noremap <leader>s mqA;<esc>`q
+noremap <leader>s mqA;<esc>`q
+noremap F <C-f>
+noremap D <C-b>
 noremap <leader>n :NERDTreeToggle<CR>
+noremap <leader>p :exit<cr><bar>:exit<cr>
 
-if &ft=='c'
-  nnoremap <leader>r :vsplit term://gcc % && a.exe<CR>
-elseif &ft=='cpp'
-  nnoremap <leader>r :vsplit term://g++ % && a.exe <CR>
-elseif &ft=='python'
-  nnoremap <leader>r :vsplit term://python %<CR>
-elseif &ft=='js'
-  nnoremap <leader>r :vsplit term://node %<CR>
-endif
+" if &ft=='c'
+"   nnoremap <leader>r :vsplit term://gcc % && a.exe<CR>
+" elseif &ft=='cpp'
+"   nnoremap <leader>r :vsplit term://g++ % && a.exe <CR>
+" elseif &ft=='python'
+"   nnoremap <leader>r :vsplit term://python %<CR>
+" elseif &ft=='js'
+"   nnoremap <leader>r :vsplit term://node %<CR>
+" endif
 
 " Non-leader binds.
 noremap <F1> :edit $MYVIMRC<cr>
-noremap <F2> :so $MYVIMRC<cr>
+" noremap <F2> :so $MYVIMRC<cr>
 
 " map <tab>  <C-w>w
 map \ <cmd>Telescope find_files<CR>
@@ -103,6 +128,7 @@ endif
 
 call plug#begin('C:\Users\hans\AppData\Local\nvim\autoload\plugged')
 
+    Plug 'rust-lang/rust.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-commentary'
     Plug 'mg979/vim-visual-multi'
@@ -112,7 +138,8 @@ call plug#begin('C:\Users\hans\AppData\Local\nvim\autoload\plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
-    Plug 'tiagovla/tokyodark.nvim'
+    " Plug 'tiagovla/tokyodark.nvim'
+    Plug 'morhetz/gruvbox'
     Plug 'ryanoasis/vim-devicons'
     Plug 'williamboman/nvim-lsp-installer'
     Plug 'neovim/nvim-lspconfig'
@@ -122,7 +149,7 @@ call plug#begin('C:\Users\hans\AppData\Local\nvim\autoload\plugged')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'voldikss/vim-floaterm'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -132,14 +159,18 @@ set termguicolors
 
 " Tokyodark configs
 
-let g:tokyodark_transparent_background = 1
-let g:tokyodark_enable_italic_comment = 1
-let g:tokyodark_enable_italic = 1
-colorscheme tokyodark
+" let g:tokyodark_transparent_background = 1
+" let g:tokyodark_enable_italic_comment = 1
+" let g:tokyodark_enable_italic = 1
+
+let g:gruvbox_underline=1
+let g:gruvbox_undercurl=1
+let g:gruvbox_bold=1
+colorscheme gruvbox
 
 " Vim airline config
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16_black_metal'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 let g:airline_section_b = '%{getcwd()}'
 let g:airline#extensions#tabline#enabled = 1
@@ -154,24 +185,16 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 1
 
-" " NERDTree auto commands
-" autocmd VimEnter * NERDTree
-" autocmd VimEnter * NERDTree | wincmd p
-" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-
-" lua require("./autoload/lua/lsp_config")
-"
 if has('persistent_undo')      "check if your vim version supports it
 set undofile                 "turn on the feature
 set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
 endif
 
-let g:coc_global_extensions = ['coc-tsserver', 'coc-html', 'coc-css', 'coc-json', 'coc-ccls']
-
 let g:floaterm_title='Terminal'
 let g:floaterm_width=0.8
 let g:floaterm_position='bottom'
 
-" windows example
-let g:godot_executable = 'C:/Path/To/Godot/godot.exe'
+let g:ale_c_cpp_checkers = ['compile_commands']
+
+let g:ale_cpp_parse_compile_commands=1
+let g:ale_cpp_parse_makefile = 1
