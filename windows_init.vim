@@ -51,12 +51,13 @@ noremap <leader>a ggVG
 noremap <leader>z :noh<cr>
 noremap <leader>t :execute "read template.cpp"<cr>
 noremap <leader>j 10j
+noremap <leader>d :ALEDetail<cr>
 noremap <leader>k 10k
 noremap <leader>h 20h
 noremap <leader>l 20l
 noremap <leader>. 10<C-w><
 noremap <leader>, 10<C-w>>
-noremap <leader>d :r!cd<cr>ddk
+" noremap <leader>d :r!cd<cr>ddk
 noremap <leader>s mqA;<esc>`q
 noremap <leader>s mqA;<esc>`q
 noremap F <C-f>
@@ -126,7 +127,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('C:\Users\hans\AppData\Local\nvim\autoload\plugged')
+call plug#begin('path')
 
     Plug 'rust-lang/rust.vim'
     Plug 'jiangmiao/auto-pairs'
@@ -138,11 +139,11 @@ call plug#begin('C:\Users\hans\AppData\Local\nvim\autoload\plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
-    " Plug 'tiagovla/tokyodark.nvim'
-    Plug 'morhetz/gruvbox'
+    Plug 'tiagovla/tokyodark.nvim'
+    " Plug 'morhetz/gruvbox'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'williamboman/nvim-lsp-installer'
-    Plug 'neovim/nvim-lspconfig'
+    " Plug 'williamboman/nvim-lsp-installer'
+    " Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
@@ -159,18 +160,18 @@ set termguicolors
 
 " Tokyodark configs
 
-" let g:tokyodark_transparent_background = 1
-" let g:tokyodark_enable_italic_comment = 1
-" let g:tokyodark_enable_italic = 1
+let g:tokyodark_transparent_background = 1
+let g:tokyodark_enable_italic_comment = 0
+let g:tokyodark_enable_italic = 0
 
-let g:gruvbox_underline=1
-let g:gruvbox_undercurl=1
-let g:gruvbox_bold=1
-colorscheme gruvbox
+" let g:gruvbox_underline=1
+" let g:gruvbox_undercurl=1
+" let g:gruvbox_bold=1
+colorscheme tokyodark
 
 " Vim airline config
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='gruvbox'
+let g:airline_theme='violet'
 let g:airline_powerline_fonts = 1
 let g:airline_section_b = '%{getcwd()}'
 let g:airline#extensions#tabline#enabled = 1
@@ -194,7 +195,34 @@ let g:floaterm_title='Terminal'
 let g:floaterm_width=0.8
 let g:floaterm_position='bottom'
 
+" let g:ale_linters_ignore = {
+"       \ 'cpp': ['clangd'],
+"       \}
+
+let g:ale_linters = {
+      \'py': ['flake8'],
+      \}
+
+" let b:ale_cpp_parse_makefile = 1
+
+" let g:ale_cpp_gcc_options = '-fsyntax-only'
+" let g:ale_cpp_clang_options = '-fsyntax-only'
+
 let g:ale_c_cpp_checkers = ['compile_commands']
 
-let g:ale_cpp_parse_compile_commands=1
+" let g:ale_cpp_parse_compile_commands=1
 let g:ale_cpp_parse_makefile = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+let g:airline#extensions#ale#enabled = 1
+
+let g:floaterm_borderchars = '─│─│╭╮╯╰'
+hi FloatermBorder guifg=lightmagenta
+
+let g:ale_completion_enabled = 1
+
+hi ALEVirtualTextError guifg=#E36981 gui=underline
+hi ALEVirtualTextWarning guifg=#C6C671 gui=underline
+
